@@ -3,4 +3,5 @@ deposit
 .env
 validator_keys
 *.txt
-*.json-locks
+deposit*
+
