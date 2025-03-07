@@ -42,7 +42,7 @@ For transaction configuration, set (optionally):
 Run the script with a file containing deposit data as an argument:
 
 ```
-node batchDeposit.js <file_path>
+node batchDeposit.js <file_path>(eg.deposit_data-xxx.json)
 ```
 
 The script will:
