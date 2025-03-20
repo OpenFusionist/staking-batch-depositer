@@ -222,7 +222,7 @@ async function processDepositJson(filePath) {
     console.log(`\x1b[31mFailed deposits: ${failureCount}/${depositData.length}\x1b[0m`);
     console.log("\x1b[33mTips for failed deposits:\x1b[0m");
     console.log("1. Check your internet connection");
-    console.log("2. Verify you have enough ETH in your wallet");
+    console.log("2. Verify you have enough ACE in your wallet");
     console.log("3. Increase GAS_LIMIT or adjust GAS_PRICE in .env file");
     console.log("4. Run the script again - already processed deposits will be skipped");
   }
