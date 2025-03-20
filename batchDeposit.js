@@ -11,7 +11,7 @@ const {
   CONTRACT_ADDRESS: contractAddress,
   GAS_LIMIT: gasLimit,
   GAS_PRICE: gasPrice,
-  MAX_RETRIES: maxRetries = 1,
+  MAX_RETRIES: maxRetries = 3,
   RETRY_DELAY: retryDelay = 1000
 } = process.env;
 
