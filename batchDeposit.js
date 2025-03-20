@@ -175,7 +175,7 @@ async function processDepositJson(filePath) {
         
         if (error.code === 'INSUFFICIENT_FUNDS') {
           console.error(`\x1b[31mERROR: Insufficient funds in wallet\x1b[0m`);
-          console.error(`Required: ${ethers.utils.formatEther(txParams.value)} ETH plus gas`);
+          console.error(`Required: ${ethers.utils.formatEther(txParams.value)} ACE plus gas`);
           console.error(`Please fund your wallet and try again`);
           process.exit(1);
         } else if (error.code === 'NETWORK_ERROR') {
