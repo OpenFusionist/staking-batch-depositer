@@ -20,7 +20,7 @@ This Node.js script facilitates the processing of Ethereum deposit data. It read
 Ensure Node.js and npm are installed on your system. Then, install the required dependencies using npm:
 
 ```
-git clone https://github.com/ohko4711/staking-batch-depositer.git
+git clone https://github.com/OpenFusionist/staking-batch-depositer.git
 cd staking-batch-depositer
 npm install
 cp .env.example .env
