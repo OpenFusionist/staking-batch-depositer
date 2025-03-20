@@ -190,7 +190,6 @@ async function processDepositJson(filePath) {
           console.error(`\x1b[31mERROR: Gas estimation failed\x1b[0m`);
           console.error(`Error details: ${error.message}`);
           console.error(`Try setting a higher GAS_LIMIT in your .env file`);
-          failureCount++;
           break;
         } else if (error.code === 'NONCE_EXPIRED') {
           console.error(`\x1b[31mERROR: Nonce has already been used\x1b[0m`);
