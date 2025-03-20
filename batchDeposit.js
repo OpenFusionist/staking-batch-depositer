@@ -165,22 +165,14 @@ async function processDepositJson(filePath) {
           txParams
         );
 
-        console.log(`\x1b[32mTransaction sent. Hash: ${tx.hash}\x1b[0m`);
-        const receipt = await tx.wait(1);
-        
-        if (receipt.status === 1) {
-          console.log(`\x1b[32mTransaction confirmed in block ${receipt.blockNumber}\x1b[0m`);
-          LockManager.createLock(lockDir, pubkeyHex);
-          success = true;
-          successCount++;
-        } else {
-          console.error(`\x1b[31mTransaction failed. Status: ${receipt.status}\x1b[0m`);
-          retryCount++;
-        }
+        console.log(`\x1b[32mTransaction sent. Hash: ${tx.hash}\x1b[0m`);        
+        LockManager.createLock(lockDir, pubkeyHex);
+        success = true;
+        successCount++;
+
       } catch (error) {
         retryCount++;
         
-        // Categorize errors for better user feedback
         if (error.code === 'INSUFFICIENT_FUNDS') {
           console.error(`\x1b[31mERROR: Insufficient funds in wallet\x1b[0m`);
           console.error(`Required: ${ethers.utils.formatEther(txParams.value)} ETH plus gas`);
