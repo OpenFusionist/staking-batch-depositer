@@ -3,6 +3,10 @@
 ## Overview
 This Node.js script facilitates the processing of Ethereum deposit data. It reads deposit data from a `deposit-data.json`, interacts with an Ethereum deposit contract, and executes deposit transactions. The script includes features like environment variable-based configuration, transaction locking to prevent double processing.
 
+
+![exmaple](./example.gif)
+
+
 ## Features
 - Processes deposit data from a specified file.
 - Connects to Ethereum nodes via JSON-RPC using the ethers.js library.
