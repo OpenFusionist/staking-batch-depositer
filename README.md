@@ -1,7 +1,7 @@
 # staking-batch-depositer
 
 ## Overview
-This Node.js script facilitates the processing of Ethereum deposit data. It reads deposit data from a `deposit-data.json`, interacts with an Ethereum deposit contract, and executes deposit transactions. The script includes features like environment variable-based configuration, transaction locking to prevent double processing.
+This Node.js script facilitates the processing of Endurance deposit data. It reads deposit data from a `deposit-data.json`, interacts with an Endurance deposit contract, and executes deposit transactions. The script includes features like environment variable-based configuration, transaction locking to prevent double processing.
 
 
 ![exmaple](./example.gif)
@@ -9,16 +9,16 @@ This Node.js script facilitates the processing of Ethereum deposit data. It read
 
 ## Features
 - Processes deposit data from a specified file.
-- Connects to Ethereum nodes via JSON-RPC using the ethers.js library.
-- Handles deposit transactions with a given Ethereum deposit contract.
+- Connects to Endurance nodes via JSON-RPC using the ethers.js library.
+- Handles deposit transactions with a given Endurance deposit contract.
 - Utilizes environment variables for secure configuration.
 - Implements a locking mechanism to prevent duplicate transactions.
 
 ## Requirements
 - Node.js
 - npm (Node Package Manager)
-- An Ethereum node accessible via JSON-RPC
-- A funded Ethereum wallet
+- An Endurance node accessible via JSON-RPC
+- A funded Endurance wallet
 
 ## Installation
 Ensure Node.js and npm are installed on your system. Then, install the required dependencies using npm:
@@ -33,9 +33,9 @@ cp .env.example .env
 ### Configuration
 Set up the .env file in the project root, based on .env-example. Configure these variables:
 
-- `PROVIDER_URL`: URL of the Ethereum JSON-RPC node.
-- `PRIVATE_KEY`: Private key of your Ethereum wallet.
-- `CONTRACT_ADDRESS`: Address of the Ethereum deposit contract.
+- `PROVIDER_URL`: URL of the Endurance JSON-RPC node.
+- `PRIVATE_KEY`: Private key of your Endurance wallet.
+- `CONTRACT_ADDRESS`: Address of the Endurance deposit contract.
 
 For transaction configuration, set (optionally):
 
@@ -51,7 +51,7 @@ node batchDeposit.js <file_path>(eg.deposit_data-xxx.json)
 
 The script will:
 1. Read deposit data from the provided file.
-2. Connect to the Ethereum network.
+2. Connect to the Endurance network.
 3. Process each deposit entry:
    - Check for an existing lock file.
    - Create a transaction with deposit details.

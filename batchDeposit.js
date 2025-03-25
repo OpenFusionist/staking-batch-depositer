@@ -5,9 +5,9 @@ const path = require("path");
 require("dotenv").config();
 
 // ENV
-const { 
-  PROVIDER_URL: providerUrl, 
-  PRIVATE_KEY: privateKey, 
+const {
+  PROVIDER_URL: providerUrl,
+  PRIVATE_KEY: privateKey,
   CONTRACT_ADDRESS: contractAddress,
   GAS_LIMIT: gasLimit,
   GAS_PRICE: gasPrice,
@@ -61,7 +61,7 @@ const LockManager = {
     }
     return lockDir;
   },
-  
+
   checkLock(lockDir, pubkey) {
     return fs.existsSync(path.join(lockDir, `${pubkey}.lock`));
   },
@@ -120,9 +120,9 @@ async function processDepositJson(filePath) {
   for (let i = 0; i < depositData.length; i++) {
     const data = depositData[i];
     const pubkeyHex = data.pubkey;
-    
-    console.log(`\x1b[36m[${i+1}/${depositData.length}] Processing pubkey: ${pubkeyHex.substring(0, 10)}...\x1b[0m`);
-    
+
+    console.log(`\x1b[36m[${i + 1}/${depositData.length}] Processing pubkey: ${pubkeyHex.substring(0, 10)}...\x1b[0m`);
+
     // 3.1)
     if (LockManager.checkLock(lockDir, pubkeyHex)) {
       console.log(`Transaction for pubkey ${pubkeyHex.substring(0, 10)}... already processed. Skipping.`);
@@ -156,7 +156,7 @@ async function processDepositJson(filePath) {
         }
 
         // 3.4) calculate deposit root and send transaction
-        const depositRoot = `0x${buf2hex(depositDataContainer.hashTreeRoot(depositParams))}`;        
+        const depositRoot = `0x${buf2hex(depositDataContainer.hashTreeRoot(depositParams))}`;
         const tx = await contract.deposit(
           depositParams.pubkey,
           depositParams.withdrawalCredentials,
@@ -165,14 +165,14 @@ async function processDepositJson(filePath) {
           txParams
         );
 
-        console.log(`\x1b[32mTransaction sent. Hash: ${tx.hash}\x1b[0m`);        
+        console.log(`\x1b[32mTransaction sent. Hash: ${tx.hash}\x1b[0m`);
         LockManager.createLock(lockDir, pubkeyHex);
         success = true;
         successCount++;
 
       } catch (error) {
         retryCount++;
-        
+
         if (error.code === 'INSUFFICIENT_FUNDS') {
           console.error(`\x1b[31mERROR: Insufficient funds in wallet\x1b[0m`);
           console.error(`Required: ${ethers.utils.formatEther(txParams.value)} ACE plus gas`);
@@ -181,11 +181,11 @@ async function processDepositJson(filePath) {
         } else if (error.code === 'NETWORK_ERROR') {
           console.error(`\x1b[31mERROR: Network connection issue\x1b[0m`);
           console.error(`Error details: ${error.message}`);
-          console.error(`Retrying in ${retryDelay/1000} seconds...`);
+          console.error(`Retrying in ${retryDelay / 1000} seconds...`);
         } else if (error.code === 'TIMEOUT') {
           console.error(`\x1b[31mERROR: Transaction timed out\x1b[0m`);
           console.error(`Error details: ${error.message}`);
-          console.error(`Retrying in ${retryDelay/1000} seconds...`);
+          console.error(`Retrying in ${retryDelay / 1000} seconds...`);
         } else if (error.code === 'UNPREDICTABLE_GAS_LIMIT') {
           console.error(`\x1b[31mERROR: Gas estimation failed\x1b[0m`);
           console.error(`Error details: ${error.message}`);
@@ -199,14 +199,14 @@ async function processDepositJson(filePath) {
           console.error(`\x1b[31mERROR sending transaction:\x1b[0m`, error);
           console.error(`Error message: ${error.message}`);
           console.error(`Error code: ${error.code || 'unknown'}`);
-          
+
           if (retryCount < maxRetries) {
-            console.error(`Retrying in ${retryDelay/1000} seconds...`);
+            console.error(`Retrying in ${retryDelay / 1000} seconds...`);
           }
         }
       }
     }
-    
+
     if (!success) {
       failureCount++;
       console.error(`\x1b[31mFailed to process pubkey ${pubkeyHex.substring(0, 10)}... after ${maxRetries} attempts\x1b[0m`);
@@ -216,7 +216,7 @@ async function processDepositJson(filePath) {
   // Summary report
   console.log("\n\x1b[36m====== Deposit Summary ======\x1b[0m");
   console.log(`\x1b[32mSuccessful deposits: ${successCount}/${depositData.length}\x1b[0m`);
-  
+
   if (failureCount > 0) {
     console.log(`\x1b[31mFailed deposits: ${failureCount}/${depositData.length}\x1b[0m`);
     console.log("\x1b[33mTips for failed deposits:\x1b[0m");
@@ -229,7 +229,7 @@ async function processDepositJson(filePath) {
 
 async function main() {
   const args = process.argv.slice(2);
-  
+
   // 1) verify args
   if (args.length !== 1) {
     console.error("\x1b[31mERROR: Invalid arguments\x1b[0m");
@@ -246,7 +246,7 @@ async function main() {
     process.exit(1);
   }
 
-  console.log("\x1b[36m====== Ethereum Staking Batch Depositer ======\x1b[0m");
+  console.log("\x1b[36m====== Endurance Staking Batch Depositer ======\x1b[0m");
   console.log(`Processing file: ${filePath}`);
 
   try {
